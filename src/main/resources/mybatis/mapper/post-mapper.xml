@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.codepresso.codepressoblog.mapper.PostMapper">
+	<select id="findAll" resultType="com.codepresso.codepressoblog.vo.Post">
+		select * from post order by id desc
+	</select>
+
+	<select id="findByPage" resultType="com.codepresso.codepressoblog.vo.Post">
+		select * from post order by id desc limit #{limit} offset #{offset}
+	</select>
+	
+	<select id="findOne" resultType="com.codepresso.codepressoblog.vo.Post">
+		select * from post where id = #{id}
+	</select>
+	
+	<insert id="save">
+	    insert into post(title, content, username)
+	    values (#{post.title}, #{post.content}, #{post.username})
+	</insert>
+	
+	<update id="update">
+	    update post set title = #{post.title}, content = #{post.content} where id = #{post.id}
+	</update>
+
+</mapper>
+
